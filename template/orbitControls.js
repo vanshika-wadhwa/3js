@@ -1,6 +1,6 @@
 //orbit controls: mouse se rotate (left/right, zoom in/outkrna material ko
-//import * as THREE from 'three';
-// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.152.0/examples/jsm/controls/OrbitControls.js';
 let scene=new THREE.Scene();
 let camera=new THREE.PerspectiveCamera(65, window.innerWidth/window.innerHeight, 0.1, 100);  //camera specifications
 camera.position.z=5;   //setting camera position
@@ -24,19 +24,23 @@ renderer.render(scene, camera);   //printing a picture  ==>jo b camera dekh rha 
 
 //orbit controls: animate function k just upr==>coz orbit wants camera, renderer jo phle bngye h
 const controls = new OrbitControls( camera, renderer.domElement );
-controls.enableDamping = true; // Optional - adds smooth damping effect
-controls.dampingFactor = 0.05;
-controls.enableZoom = true;    // Enable zooming
+controls.enableDamping = true; // adds smooth damping effect: ghumne pr dheree se rukega
+//m rotation direct contrls m b de skti hu
+controls.autoRotate=true;              //apne aap ghumta rhega
+controls.autoRotateSpeed=12.0;
+controls.dampingFactor = 0.05;       //kitni speed se rokna h:jitna km hoga utna slow rukega
+controls.enableZoom = true;    // Enable zooming(zoom in-out)
 controls.enablePan = true;     // Enable panning
 
 function animate(){
     window.requestAnimationFrame(animate);  
-    cube.rotation.y +=0.01;  //0.01 is rotation speed
-    cube.rotation.x +=0.01;
+    //m rotation direct contrls m b de skti hu
+    // cube.rotation.y +=0.01;  //0.01 is rotation speed
+    // cube.rotation.x +=0.01;
+    
+    controls.update();  //jaise jaise chize animate ho rhi h vaise vaise controls ko b update krna
 
     renderer.render(scene, camera);  //printing done
-
-   controls.update();  //jaise jaise chize animate ho rhi h vaise vaise controls ko b update krna
 
     
 }

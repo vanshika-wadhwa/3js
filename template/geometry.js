@@ -15,6 +15,7 @@ let mesh=new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
 
+
 const canvas=document.querySelector('canvas'); //selecting canvas from html
 let renderer=new THREE.WebGLRenderer({canvas:canvas, antialias:true});
 // antialias:true---> it will make edges smooth==> jagged lines are r
@@ -23,13 +24,19 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.render(scene, camera);   //printing a picture  ==>jo b camera dekh rha h use print krte rho
 
 
-//------------------------------animate----------------------------------------------
 let clock=new THREE.Clock();
+//----------------------------------orbitControls-----------------------------------------------
+// const controls = new OrbitControls(camera, renderer.domElement);
+// controls.enableDamping = true;
+// controls.dampingFactor = 0.05;
+// controls.enableZoom = true;
+// controls.enablePan = true;
+//------------------------------animate----------------------------------------------
 function animate(){
     // frame per second: 1 second m computer ki jitni power ko picture lene ki lelo
     window.requestAnimationFrame(animate);  
     renderer.render(scene, camera);  //printing done
-
+    // controls.update();
     //--------jo rotate krna h vo likho-------------------------------------------------------------------------------------------------------------------
     mesh.rotation.y +=0.05;  //0.05 is rotation speed
 
